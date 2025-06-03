@@ -1,6 +1,6 @@
 import 'package:app_agropec/screen/homemscren.dart';
 import 'package:flutter/material.dart';
-import 'theme/theme.dart'; // certifique-se de que o caminho está certo
+import 'theme/theme.dart';
 
 void main() {
   runApp(const MyApp());

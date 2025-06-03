@@ -1,43 +1,123 @@
 import 'package:flutter/material.dart';
 
-class Homemscren extends StatelessWidget {
+class Homemscren extends StatefulWidget {
   const Homemscren({super.key});
 
   @override
+  State<Homemscren> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<Homemscren> {
+  int _selectedIndex = 0;
+  late final PageController _pageController;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController(initialPage: _selectedIndex);
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+    _pageController.animateToPage(
+      index,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text('AGROPEC'),
-          actions: <Widget>[
-            IconButton(onPressed: () {}, icon: Icon(Icons.notifications)),
-          ],
-        ),
-        bottomNavigationBar: NavigationBar(
-          destinations: const <Widget>[
-            NavigationDestination(
-              selectedIcon: Icon(Icons.home),
-              icon: Icon(Icons.home_outlined),
-              label: 'home',
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('AGROPEC'),
+        actions: [
+          IconButton(
+            icon: const Icon(
+              Icons.notifications_outlined,
+              color: Colors.green,
+              size: 30,
             ),
-            NavigationDestination(
-              icon: Icon(Icons.map_outlined),
-              label: 'mapa',
-            ),
-            NavigationDestination(
-              icon: Icon(Icons.calendar_month),
-              label: 'eventos',
-            ),
-            NavigationDestination(
-              icon: Icon(Icons.person_outline),
-              label: 'stands',
-            ),
-            NavigationDestination(
-              icon: Icon(Icons.favorite_outline),
-              label: 'favoritos',
-            ),
-          ],
-        ),
+            onPressed: () {},
+          ),
+        ],
+      ),
+      body: PageView(
+        controller: _pageController,
+        onPageChanged: (int index) {
+          setState(() {
+            _selectedIndex = index;
+          });
+        },
+        children: [
+          // Página com imagem de fundo
+          Stack(
+            children: [
+              Positioned.fill(
+                child: Image.asset(
+                  'assets/images/fundo.png',
+                  fit: BoxFit.cover,
+                ),
+              ),
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 30),
+                  child: Column(
+                    children: const [
+                      Text(
+                        'Bem-vindo à AGROPEC!',
+                        style: TextStyle(
+                          fontSize: 30,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+
+          // Outras páginas
+          const Center(child: Text('Mapa')),
+          const Center(child: Text('Eventos')),
+          const Center(child: Text('Stands')),
+          const Center(child: Text('Favoritos')),
+        ],
+      ),
+      bottomNavigationBar: NavigationBar(
+        indicatorColor: Colors.green,
+        selectedIndex: _selectedIndex,
+        onDestinationSelected: _onItemTapped,
+        destinations: const [
+          NavigationDestination(
+            selectedIcon: Icon(Icons.home),
+            icon: Icon(Icons.home_outlined),
+            label: 'Início',
+          ),
+          NavigationDestination(icon: Icon(Icons.map_outlined), label: 'Mapa'),
+          NavigationDestination(
+            icon: Icon(Icons.calendar_month_outlined),
+            label: 'Eventos',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.storefront_outlined),
+            label: 'Stands',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.favorite_outline),
+            label: 'Favoritos',
+          ),
+        ],
       ),
     );
   }
