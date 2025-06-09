@@ -7,13 +7,14 @@ class AppColors {
   static const Color brown = Color(0xFF8B4513);
   static const Color white = Color(0xFFFFFFFF);
   static const Color gray = Color(0xFFCCCCCC);
+  static const Color but = Color.fromRGBO(3, 212, 90, 0.582);
 }
 
 class AppTheme {
   static ThemeData get lightTheme {
     return ThemeData(
       primaryColor: AppColors.primaryGreen,
-      scaffoldBackgroundColor: AppColors.white,
+      scaffoldBackgroundColor: AppColors.primaryGreen,
       appBarTheme: AppBarTheme(centerTitle: true, elevation: 2),
       textTheme: const TextTheme(
         titleLarge: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),

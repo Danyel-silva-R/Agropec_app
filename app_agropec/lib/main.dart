@@ -1,4 +1,4 @@
-import 'package:app_agropec/screen/homemscren.dart';
+import 'package:app_agropec/app.dart';
 import 'package:flutter/material.dart';
 import 'theme/theme.dart';
 
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       title: 'Agropec Conecta 2025',
       theme: AppTheme.lightTheme, // aplica o tema
       debugShowCheckedModeBanner: false,
-      home: Homemscren(),
+      home: App(),
     );
   }
 }
