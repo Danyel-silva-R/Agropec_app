@@ -7,7 +7,7 @@ class Evetosscreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<Map<String, String>> eventos = [
-      {'imagem': 'assets/images/Felipea.png'},
+      {'imagem': 'assets/images/Felipea.png', 'texto': 'Felipe Amorim'},
       {'imagem': 'assets/images/marilia.png'},
     ];
 
@@ -18,6 +18,7 @@ class Evetosscreen extends StatelessWidget {
           children:
               eventos.map((evento) {
                 return Cardevento(
+                  texto: evento['texto'] ?? '',
                   imagem: evento['imagem'] ?? '',
 
                   // imagem: evento['imagem'] ?? '',

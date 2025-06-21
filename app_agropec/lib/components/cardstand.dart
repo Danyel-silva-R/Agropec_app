@@ -93,7 +93,7 @@ class Cardstand extends StatelessWidget {
                           vertical: 4,
                         ),
                         decoration: BoxDecoration(
-                          color: AppColors.but,
+                          color: AppColors.primaryGreen,
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: Text(
@@ -101,7 +101,7 @@ class Cardstand extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w500,
-                            color: AppColors.primaryGreen,
+                            color: AppColors.white,
                           ),
                         ),
                       ),
